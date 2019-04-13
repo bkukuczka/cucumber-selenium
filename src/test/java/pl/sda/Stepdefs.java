@@ -14,13 +14,13 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import java.util.concurrent.TimeUnit;
 
 public class Stepdefs {
-    private String URL = "http://automationpractice.com/index.php";
+    //ustaw tutaj swoją scieżkę do pliku chromedriver.exe
     private String CHROMEDRIVER = "C:\\soft\\web_drivers\\chromedriver.exe";
+    private String URL = "http://automationpractice.com/index.php";
     private WebDriver driver;
 
     @Before
     public void setup() {
-
         System.setProperty("webdriver.chrome.driver", CHROMEDRIVER);
         driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
@@ -41,7 +41,8 @@ public class Stepdefs {
     @Then("title exist in sub-page")
     public void title_exist_in_sub_page() {
         WebElement expectedElement = driver.findElement(By.xpath("//*[@id=\"center_column\"]/div[1]/div/div/span"));
-        Assert.assertEquals(expectedElement.getText(), "Women");
+        String expectedTitle = expectedElement.getText();
+        Assert.assertEquals("Women", expectedTitle);
     }
 
     @After
